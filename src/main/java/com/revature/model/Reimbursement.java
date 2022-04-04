@@ -15,7 +15,7 @@ public class Reimbursement {
     @Column(name = "reimb_amount", nullable = false)
     private double amount;
 
-    @Column(name="reimb_author")
+    @JoinColumn(name="reimb_author")
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE) // If user is deleted then it will also delete all of their relations
     private User author;
