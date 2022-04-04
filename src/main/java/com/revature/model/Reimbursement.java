@@ -26,6 +26,12 @@ public class Reimbursement {
     public Reimbursement() {
     }
 
+    public Reimbursement(double amount, User author, String description) {
+        this.amount = amount;
+        this.author = author;
+        this.description = description;
+    }
+
     public Reimbursement(int id, double amount, User author, String description) {
         this.id = id;
         this.amount = amount;

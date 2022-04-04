@@ -1,5 +1,6 @@
 package com.revature.drivers;
 
+import com.revature.model.Reimbursement;
 import com.revature.model.User;
 import com.revature.util.SessionFactorySingleton;
 import org.hibernate.Session;
@@ -32,9 +33,14 @@ public class MainDriver {
         User user1 = new User("Bach", "Tran","btran","password"); // Transient state
         User user2= new User("The", "Batman","thebatman","password"); // Transient
 
+        Reimbursement reimb1 = new Reimbursement(100.34, user1, "gas money to annual conference");
+        Reimbursement reimb2 = new Reimbursement(1000, user2, "oil change");
         session.persist(user1);
         session.persist(user2);
+        session.persist(reimb1);
+        session.persist(reimb2);
 
+        transaction.commit();
         session.close();
     }
 }
