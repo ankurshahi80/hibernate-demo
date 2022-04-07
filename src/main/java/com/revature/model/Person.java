@@ -1,9 +1,17 @@
 package com.revature.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Person {
-    String name;
+
+    @Column(unique = true)
+    private String name;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     public Person() {
     }
