@@ -17,8 +17,8 @@ public class Reimbursement {
     private double amount;
 
     // This is a foreign key
-    @Column(name="reimb_author")
-    @ManyToOne // Many reimbursement for each other
+    @JoinColumn(name="reimb_author")
+    @ManyToOne // Many reimbursement for each author
     @OnDelete(action= OnDeleteAction.CASCADE) // Hibernate annotation. If the user
     // deleted, it will also delete all of their reimbursements.
     private User author;
