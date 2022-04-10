@@ -9,8 +9,18 @@ import org.hibernate.Transaction;
 
 public class MainDriver {
     public static void main(String[] args) {
-        populateSampleData();
+//        populateSampleData();
 //        test();
+        getDataFromDatabase();
+    }
+
+    public static void getDataFromDatabase(){
+        SessionFactory sf = SessionFactorySingleton.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction tx = session.beginTransaction();
+
+        User u = session.get(User.class, 1);
+        System.out.println(u);;
     }
 
     public static void test() {
