@@ -25,8 +25,8 @@ public class User {
     @Column(name="password", nullable = false, length = 50)
     private String password;
 
-    @OneToMany(mappedBy = "author", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}) // Author is the property in the Reimbursement class
-    private List<Reimbursement> reimbursementList;
+//    @OneToMany(mappedBy = "author", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}) // Author is the property in the Reimbursement class
+//    private List<Reimbursement> reimbursementList;
 
     public User() {
     }
@@ -46,13 +46,13 @@ public class User {
         this.password = password;
     }
 
-    public List<Reimbursement> getReimbursementList() {
-        return reimbursementList;
-    }
+//    public List<Reimbursement> getReimbursementList() {
+//        return reimbursementList;
+//    }
 
-    public void setReimbursementList(List<Reimbursement> reimbursementList) {
-        this.reimbursementList = reimbursementList;
-    }
+//    public void setReimbursementList(List<Reimbursement> reimbursementList) {
+//        this.reimbursementList = reimbursementList;
+//    }
 
     public int getId() {
         return id;
@@ -99,12 +99,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(reimbursementList, user.reimbursementList);
+        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, username, password, reimbursementList);
+        return Objects.hash(id, firstName, lastName, username, password);
     }
 
     @Override
@@ -115,7 +115,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", reimbursementList=" + reimbursementList +
                 '}';
     }
 }
