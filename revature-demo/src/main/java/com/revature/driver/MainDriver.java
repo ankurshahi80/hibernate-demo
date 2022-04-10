@@ -20,7 +20,10 @@ public class MainDriver {
         Transaction tx = session.beginTransaction();
 
         User u = session.get(User.class, 1);
-        System.out.println(u);;
+        System.out.println(u);
+
+        tx.commit();
+        session.close();
     }
 
     public static void test() {
