@@ -7,6 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import javax.persistence.Query;
+import java.util.List;
+
 public class MainDriver {
     public static void main(String[] args) {
 //        populateSampleData();
@@ -20,7 +23,14 @@ public class MainDriver {
         Transaction tx = session.beginTransaction();
 
         User u = session.get(User.class, 1);
-        System.out.println(u);
+        // You don't query tables using HQL, instead, you query classes and properties
+        // of those classes
+        Query query = session.createQuery(
+                "SELECT r FROM Reimbursement r JOIN r.author as u WHERE u.id = :id"
+        );
+        query.setParameter("id", 1);
+        List<Reimbursement> reimbursements = query.getResultList();
+        System.out.println(reimbursements);
 
         tx.commit();
         session.close();
