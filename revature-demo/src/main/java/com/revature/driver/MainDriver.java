@@ -14,7 +14,37 @@ public class MainDriver {
     public static void main(String[] args) {
 //        populateSampleData();
 //        test();
-        getDataFromDatabase();
+//        getDataFromDatabase();
+        populateSampleData2();
+    }
+
+    public static void populateSampleData2() {
+        SessionFactory sf = SessionFactorySingleton.getSessionFactory();
+        Session session = sf.openSession();
+        Transaction tx = session.beginTransaction();
+
+        User user1 = session.get(User.class, 1); // persistent
+        // Changes made to persistent objects will be persisted to the database whenever
+        // 1. the session is "flushed"
+        // or
+        // 2. the transaction is committed
+
+        Reimbursement r1 = new Reimbursement(); // Transient
+        r1.setDescription("Business travel");
+        r1.setAuthor(user1);
+        r1.setAmount(100);
+
+        Reimbursement r2 = new Reimbursement(); // Transient
+        r2.setDescription("Team building dinner");
+        r2.setAuthor(user1);
+        r2.setAmount(200);
+
+        session.persist(r1);
+        session.persist(r2);
+        // At this point, r1 and r2 are no longer transient, they are now persistent
+
+        tx.commit();
+        session.close();
     }
 
     public static void getDataFromDatabase(){
