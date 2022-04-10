@@ -32,6 +32,18 @@ public class MainDriver {
         List<Reimbursement> reimbursements = query.getResultList();
         System.out.println(reimbursements);
 
+        // Retrieve a Reimbursement object
+        Reimbursement r = session.get(Reimbursement.class, 2); // id:2
+        System.out.println(r);
+        System.out.println(r.getAuthor());
+
+        // HQL
+        Reimbursement reimb = (Reimbursement) session
+                .createQuery("FROM Reimbursement r WHERE r.id = :id")
+                .setParameter("id",2)
+                .getSingleResult();
+        System.out.println(reimb);
+
         tx.commit();
         session.close();
     }
