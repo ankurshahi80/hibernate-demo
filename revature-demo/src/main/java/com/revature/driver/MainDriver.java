@@ -10,6 +10,11 @@ import org.hibernate.Transaction;
 public class MainDriver {
     public static void main(String[] args) {
         populateSampleData();
+//        test();
+    }
+
+    public static void test() {
+        SessionFactory sf = SessionFactorySingleton.getSessionFactory();
     }
 
     public static void populateSampleData(){
@@ -32,7 +37,7 @@ public class MainDriver {
 
         // transient reimbursements objects
         Reimbursement reimb1 = new Reimbursement(1000.34, user1, "gas money to annual conference");
-        Reimbursement reimb2 = new Reimbursement(500, user2,"car servicing");
+        Reimbursement reimb2 = new Reimbursement(500, user1,"car servicing");
 
         //persist data
         session.persist(reimb1);

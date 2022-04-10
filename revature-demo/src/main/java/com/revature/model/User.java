@@ -1,6 +1,7 @@
 package com.revature.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity // Tells Hibernate that this is a table
@@ -24,6 +25,9 @@ public class User {
     @Column(name="password", nullable = false, length = 50)
     private String password;
 
+    @OneToMany(mappedBy = "author", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}) // Author is the property in the Reimbursement class
+    private List<Reimbursement> reimbursementList;
+
     public User() {
     }
 
@@ -40,6 +44,14 @@ public class User {
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+    }
+
+    public List<Reimbursement> getReimbursementList() {
+        return reimbursementList;
+    }
+
+    public void setReimbursementList(List<Reimbursement> reimbursementList) {
+        this.reimbursementList = reimbursementList;
     }
 
     public int getId() {
@@ -87,12 +99,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(reimbursementList, user.reimbursementList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, username, password);
+        return Objects.hash(id, firstName, lastName, username, password, reimbursementList);
     }
 
     @Override
@@ -103,6 +115,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", reimbursementList=" + reimbursementList +
                 '}';
     }
 }

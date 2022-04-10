@@ -20,7 +20,7 @@
             it will throw an exception
             4. create-drop - same as create, but will drop tables when SessionFactory is closed
          -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">validate</property>
 
         <!-- Specify our entity/class mappings here -->
         <mapping class="com.revature.model.User"></mapping>
